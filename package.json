@@ -1,0 +1,17 @@
+{
+  "name": "leap-x11-a3d-controller",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "run": "node ./index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^2.10.2",
+    "eslint-config-formidable": "^3.0.0"
+  }
+}
