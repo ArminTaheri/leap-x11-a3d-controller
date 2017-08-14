@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "run": "node ./index.js"
+    "leap": "node ./index.js"
   },
   "keywords": [],
   "author": "",
@@ -13,5 +13,14 @@
   "devDependencies": {
     "eslint": "^2.10.2",
     "eslint-config-formidable": "^3.0.0"
+  },
+  "dependencies": {
+    "jetty": "^0.2.1",
+    "leapjs": "^0.6.4",
+    "leapjs-plugins": "^0.1.12",
+    "present": "^1.0.0",
+    "ramda": "^0.24.1",
+    "ramda-fantasy": "^0.8.0",
+    "x11": "^2.2.1"
   }
 }

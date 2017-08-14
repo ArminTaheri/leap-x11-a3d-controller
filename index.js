@@ -1,18 +1,29 @@
-const leapController = require('./lib/leap-controller');
+const x11 = require('x11');
+const { exec } = require('child_process');
+const Leap = require('leapjs');
+const { map } = require('ramda');
+
+const XEventManager = require('./lib/XEventManager');
+const { ScreenState } = require('./lib/ScreenState');
+const { leapControllerInit, leapAction } = require('./lib/leap-controller');
+const { log, time } = require('./lib/logger');
 
 function controllerLoop(eventManager) {
+  const screenState = new ScreenState();
+  leapControllerInit(eventManager, screenState);
   return () => {
     let lastFrame;
     Leap.loop({
-      frame: function (frame => {
+      frame: function (frame) {
         if (!lastFrame) {
           lastFrame = frame;
           return;
         }
-        leapController(eventManager, lastframe, frame);
-        lastframe = frame;
+        leapAction(eventManager, screenState, lastFrame, frame)
+        lastFrame = frame;
+      },
     });
-  }
+  };
 }
 
 x11.createClient((err, display) => {
@@ -22,8 +33,10 @@ x11.createClient((err, display) => {
       throw err;
     }
     const wid = Number(stdout.trim());
-    const em = new XEventManager(wid, X);
-    X.SetInputFocus(wid);
-    setTimeout(controllerLoop(em), 300);
+    const em = new XEventManager();
+    em.init(wid, X).then(() => {
+      X.SetInputFocus(wid);
+      setTimeout(controllerLoop(em), 300);
+    });
   });
 });
