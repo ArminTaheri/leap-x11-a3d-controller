@@ -19,7 +19,8 @@ function controllerLoop(eventManager) {
           lastFrame = frame;
           return;
         }
-        leapAction(eventManager, screenState, lastFrame, frame)
+        leapAction(eventManager, screenState, lastFrame, frame);
+       // log(`Time per frame: ${time()} ms`);
         lastFrame = frame;
       },
     });
