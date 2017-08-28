@@ -15,6 +15,7 @@
     "eslint-config-formidable": "^3.0.0"
   },
   "dependencies": {
+    "death": "^1.1.0",
     "jetty": "^0.2.1",
     "leapjs": "^0.6.4",
     "leapjs-plugins": "^0.1.12",
